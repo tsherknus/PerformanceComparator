@@ -41,11 +41,9 @@ def annual_performance_comparator(benchmark):
                         temp_dict[i] = {'benchmark_performance': benchmark_performance, 'ticker_performance': ticker_performance}
         annual_stock_performance[ticker] = temp_dict
 
-benchmarks = ["SPY", "QQQ"]
 
-for benchmark in benchmarks:
-
-    annual_performance_comparator("QQQ")
+def annual_benchmark_beat_pct(benchmark):
+    annual_performance_comparator(benchmark)
 
     for x in annual_stock_performance:
         i = 0
@@ -56,8 +54,11 @@ for benchmark in benchmarks:
                 if ticker_performance > benchmark_performance:
                     i += 1
             performance = i / len(annual_stock_performance[x])
-            if performance > 0.7 and len(annual_stock_performance[x]) > 5:
-                consistent_beats [x] = performance
+            if len(annual_stock_performance[x]) > 5:
+                consistent_beats[x] = performance
+            else:
+                consistent_beats[x] = None
 
     # write_file(annual_stock_performance, benchmark + "_annual_stock_performance")
-    write_file(consistent_beats, benchmark + "_consistent_beats")
+    #write_file(consistent_beats, benchmark + "_consistent_beats")
+    return consistent_beats
