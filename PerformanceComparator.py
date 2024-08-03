@@ -23,12 +23,12 @@ def add_to_dict(ticker, benchmark_pct_chg, ticker_pct_increase, first_ticker_can
                  'period_end': period_end.strftime('%Y-%m-%d'), 'comparison_period': f"{comparison_period / 365} years",
                  'annual_benchmark_beat_pct': annual_beat_pct}
 
-    if (temp_dict['benchmark_beat'] > 5 and temp_dict['annual_benchmark_beat_pct']
-            and temp_dict['annual_benchmark_beat_pct'] > 0.65):
-        winners_list.append(temp_dict)
 
-    if (temp_dict['benchmark_beat'] < 0 and temp_dict['annual_benchmark_beat_pct']
-            and temp_dict['annual_benchmark_beat_pct'] < 0.35):
+
+    if ((temp_dict['ticker_pct_change'] / temp_dict['benchmark_pct_change']) > 2 and temp_dict['annual_benchmark_beat_pct']
+            and temp_dict['annual_benchmark_beat_pct'] > 0.49):
+        winners_list.append(temp_dict)
+    else:
         loser_list.append(temp_dict)
 
     output_list.append(temp_dict)

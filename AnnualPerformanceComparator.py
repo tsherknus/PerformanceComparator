@@ -54,7 +54,7 @@ def annual_benchmark_beat_pct(benchmark):
                 if ticker_performance > benchmark_performance:
                     i += 1
             performance = i / len(annual_stock_performance[x])
-            if len(annual_stock_performance[x]) > 5:
+            if len(annual_stock_performance[x]) > 3:
                 consistent_beats[x] = performance
             else:
                 consistent_beats[x] = None
